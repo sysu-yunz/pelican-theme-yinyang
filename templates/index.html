@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>{{ SITENAME }}</title>
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<article class="posts">
+    <div class="row">
+        <div class="col-xs-12">
+            {% include 'partial/header.html' %}
+            <div id="posts-list">
+                {% for year, year_group in dates | groupby('date.year') | reverse %}
+                <section>
+                    <h1 class="site-date-catalog"> {{ year }}</h1>
+                    {% for article in year_group %}
+                    <div class="row posts-line">
+                        <div class="posts-date col-xs-3 col-sm-2">
+                            <time datetime="{{ article.date.strftime('%b-%d') }}">
+                                {{ article.date.strftime('%b %d') }}
+                            </time>
+                        </div>
+                        <div class="posts-title col-xs-9 col-sm-10">
+                            <div class="row">
+                                <div class="col-xs-11 col-sm-10">
+                                    <a href="{{ article.url }}">{{ article.title }}</a>
+                                </div>
+                                <div class="col-xs-1 col-sm-2 posts-categories">
+                                    <div class="posts-category">
+                                        <a href="{{ article.category.url }}/">
+                                            <strong>{{ article.category}}</strong>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </section>
+                {% endfor %}
+            </div>
+            {% include 'partial/footer.html' %}
+        </div>
+    </div>
+</article>
+{% endblock content %}

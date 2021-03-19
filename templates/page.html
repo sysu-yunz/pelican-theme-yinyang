@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head %}
+<title>{{ page.title }}</title>
+{{ super() }}
+{% endblock %}
+{% block content %}
+<article class="posts">
+    <div class="row">
+        <div class="col-xs-12">
+            {% include 'partial/header.html' %}
+            <header class="post-header">
+                <h1 class="post-title">{{ page.title }}</h1>
+                <div class="row post-desc">
+                </div>
+            </header>
+            <div class="post-content markdown-body">
+                {{ postHeaderContent }}
+                {{ page.content }}
+            </div>
+            {% include 'partial/footer.html' %}
+        </div>
+    </div>
+</article>
+{% endblock %}

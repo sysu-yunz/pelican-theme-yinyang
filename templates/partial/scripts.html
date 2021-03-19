@@ -1,0 +1,19 @@
+<script src="{{ PARAMS['staticPrefix'] }}/theme/js/highlight.pack.js"></script>
+<script src="https://unpkg.com/quicklink@0.1.1/dist/quicklink.umd.js"></script>
+{% if PARAMS['lazyImage'] and article %}
+<script src="{{ PARAMS['staticPrefix'] }}/theme/js/lazyload.min.js"></script>
+<script>
+    var lazyImage = new LazyLoad({
+        container: document.getElementById('article')
+    });
+</script>
+{% endif %}
+<script>
+    hljs.initHighlightingOnLoad();
+
+    var posts = document.getElementById('posts-list');
+    posts && quicklink({
+        el: posts,
+        priority: true,
+    });
+</script>
